@@ -6,7 +6,7 @@
       $scope.number = 50;
 
       $scope.sayHello = function () {
-        return "hello courera :)";
+        return "hii my  name is Faizal";
       }
       $scope.name = prompt("Enter your name : ");
   });
