@@ -9,7 +9,16 @@
     <title>First Web App</title>
   </head>
   <body >
-    <h1>Faizal</h1>
+    
+    <!-- Dependency Injection -->
+
+    <h1>Dependency Injection (DI)</h1>
+    <div ng-controller='DIController'>
+      <input type="text" ng-model="name" ng-blur="upper();">
+    </div>
+
+
+    <!-- <h1>Faizal</h1>
     <div ng-controller="MyFirstController" class="">
       {{sayHello()}}
       <input type="text" ng-model="name" />
@@ -18,7 +27,8 @@
       <label for="range">0<input type="range" value="{{number}}" min="0" max="200">200</label>
       <input type="range" value="{{number}}">
       {{number}}
-    </div>
+    </div> -->
+
     <script src="app.js"></script>
   </body>
 </html>
