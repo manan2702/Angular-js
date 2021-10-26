@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Module1">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding : 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        #title {
+            margin-bottom: 5rem;
+        }
+        div {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgb(248, 248, 90),rgb(245, 201, 121));
+            color: rgb(255, 38, 0);
+            font-size: 1rem;
+        }
+        input {
+            width: 20rem;
+            height: 2rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: rgb(173, 115, 6);
+            outline: none;
+            border: 2px solid green;
+            border-radius: 10px;
+            padding: 5px;
+            background: rgb(187, 240, 187);
+        }
+        button {
+            width: 10rem;
+            height: 1.5rem;
+            border-radius: 10px;
+            color: #fff;
+            background: linear-gradient(rgb(3, 170, 3),rgb(164, 190, 15));
+        }
+    </style>
+    <title>Items Counter</title>
+</head>
+<body>
+    <div ng-controller="countController">
+        <h1 id="title">Module - 1</h1>
+        <input type="text" ng-model="input">
+        <br/><br/>
+        <button ng-click="Check();">Check If Too Much</button>
+        <br><br>
+        <h1>{{message}}</h1>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
