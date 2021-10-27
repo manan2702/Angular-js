@@ -6,7 +6,7 @@
     countController.$inject = ['$scope'];
 
     function countController($scope) {
-        $scope.input = "hello , my , name , is , faizal";
+        $scope.input = "";
 
         $scope.Check = function () {
             var count = $scope.input.split(",");
