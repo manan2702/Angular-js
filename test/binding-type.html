@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./binding-type-app.js"></script>
+    <title>Types Of Binding</title>
+</head>
+<body>
+    <h1>2-way , 1-way , 1-time Binding</h1>
+    <div ng-controller="bindingController">
+        <button ng-click="showNumberOfWatchers()">Log # of Watcher</button>
+        <button ng-click="setFullName()">Set Full Name</button>
+
+        Full name is  : {{ :: fullname }} <br>
+        <button ng-click="logFirstName()">Log first name</button><br>
+        <button ng-click="logFullName()">Log full name</button><br>
+
+        <div>
+            <input type="text" ng-model="firstname">
+        </div>
+    </div>
+</body>
+</html>
