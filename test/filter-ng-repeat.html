@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./filter-ng-repeat-app.js"></script>
+    <title>Filter Repeat</title>
+</head>
+<body>
+    <h1>Filter ng-Repeat</h1>
+    <div ng-controller="repeatController">
+        Product : <input type="text" ng-model="productSearch">
+        Number : <input type="text" ng-model="numberSearch">
+        <ul>
+            <li ng-repeat="item in shoppingList1 | filter : productSearch">{{ item }}</li>
+        </ul>
+        <ul>
+            <li ng-repeat="contact in contactNumber | filter : numberSearch">{{ contact }}</li>
+        </ul>
+    </div>
+</body>
+</html>

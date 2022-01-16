@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="./custom-service-app.js"></script>
+    <title>Shooping List</title>
+</head>
+<body>
+    <h1>Shooping List</h1>
+    <div ng-controller="ShoopingListAddController as itemAdder">
+        <input type="text" ng-model="itemAdder.itemName" placeholder="Item Name" />
+        <input type="text" ng-model="itemAdder.itemQuantity" placeholder="Quantity" />
+        <button ng-click="itemAdder.addItem();">Add Item To Shooping List</button>
+    </div>
+
+    <div ng-controller="ShoopingListShowController as showList">
+        <ol>
+            <li ng-repaet="item in showList.items">
+                {{ item.quantity }} of {{ item.name}}
+                <button ng-click="showList.removeItem($index);">Remove</button>
+            </li>
+        </ol>
+    </div>
+</body>
+</html>

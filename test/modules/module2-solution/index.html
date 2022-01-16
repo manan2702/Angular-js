@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app='ShoppingListApp'>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+
+    <title>Assignment 2</title>
+  </head>
+  <body>
+    <h1>Shopping List</h1>
+
+    <div class="container">
+      <!-- Preconfigured List -->
+      <div id="list" ng-controller='ToBuyController as list'>
+        <h3>Shopping List</h3>
+        <input type="text" ng-model="list.itemName" placeholder="item name">
+        <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+        <button ng-click="list.addItem();" id="Add-items-btn">Add Item</button>
+        <ol>
+          <li ng-repeat="item in list.items">
+            Buy {{ item.quantity }} {{ item.name }}
+            <button ng-click="list.removeItem($index,itemName);" id="Bought-btn">Bought</button>
+          </li>
+        </ol>
+        <div ng-if="list.addItem">
+          <h2>Everything is bought!</h2>
+        </div>
+        <div class="error" ng-if="list.errorMessage">{{list.errorMessage}}</div>
+      </div>
+
+
+      <div id="Donelist" ng-controller='AlreadyBoughtController as boughtlist'>
+        <h3>Already Bought List</h3>
+        <ol>
+          <li ng-repeat="item in boughtlist.items">
+            Bought {{ item.quantity }} {{ item.name }}
+          </li>
+        </ol>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -16,7 +16,7 @@
 
   // angular.module('myFirstApp', [])
   // .controller('DIController', DIController);
-  
+
   // function DIController($scope, $filter, $injector) {
   //   $scope.name = "Faizal";
 
@@ -34,15 +34,15 @@
   // }
 
   // Protecting DI from minification
-  // during minification injector like : scope,filter name aslo changed 
-  // and if name chnage it not gona wrok 
-  // To protect this injector we use array in controller 
+  // during minification injector like : scope,filter name aslo changed
+  // and if name chnage it not gona wrok
+  // To protect this injector we use array in controller
   // in array we put all our injector in single-inverted coma ['$scope' , '$filter', ....]
 
   angular.module('myFirstApp', [])
   // .controller('DIController', ['$scope' , '$filter', DIController]);
   .controller('DIController', DIController);
-  
+
   // instead of declare scope&filter in above mix with controller we can also do as below to seem clear or readability
   DIController.$inject = ['$scope' , '$filter'];
 
