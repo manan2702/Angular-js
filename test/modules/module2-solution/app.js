@@ -1,99 +1,55 @@
-(function () {
-'use strict';
+(function() {
+    'use strict';
 
-angular.module('ShoppingListApp', [])
-.controller('ToBuyController', ToBuyController)
-.controller('AlreadyBoughtController', AlreadyBoughtController)
-.provider('ShoppingListService', ShoppingListServiceProvider)
-.config(Config);
+    angular.module('ShoppingListCheckOff', [])
+        .controller('ToBuyController', ToBuyController)
+        .controller('AlreadyBoughtController', AlreadyBoughtController)
+        .service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
-Config.$inject = ['ShoppingListServiceProvider'];
-function Config(ShoppingListServiceProvider) {
-  // Save Yaakov from himself
-  ShoppingListServiceProvider.defaults.maxItems = 5;
-}
+    ToBuyController.$inject = ['ShoppingListCheckOffService'];
 
+    function ToBuyController(ShoppingListCheckOffService) {
+        var toBuyList = this;
 
-ToBuyController.$inject = ['ShoppingListService'];
-function ToBuyController(ShoppingListService) {
-  var list = this;
+        toBuyList.items = ShoppingListCheckOffService.getToBuyItems();
 
-  list.items = ShoppingListService.getItems();
-
-  list.itemName = "";
-  list.itemQuantity = "";
-  list.itemslen =
-  list.addItem = function () {
-    try {
-      ShoppingListService.addItem(list.itemName, list.itemQuantity);
-    } catch (error) {
-      list.errorMessage = error.message;
+        toBuyList.buyItem = function(itemIndex) {
+            ShoppingListCheckOffService.buyItem(itemIndex);
+        };
     }
-  };
 
-  list.removeItem = function (itemIndex) {
-    ShoppingListService.removeItem(itemIndex);
-  };
-}
+    AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
 
-AlreadyBoughtController.$inject = ['ShoppingListService'];
-function AlreadyBoughtController(ShoppingListService) {
-  var boughtlist = this;
+    function AlreadyBoughtController(ShoppingListCheckOffService) {
+        var alreadyBougthList = this;
 
-  boughtlist.items = ShoppingListService.getboughtItems();
-
-  boughtlist.itemName = "";
-  boughtlist.itemQuantity = "";
-}
-
-// If not specified, maxItems assumed unlimited
-function ShoppingListService(maxItems) {
-  var service = this;
-
-  // List of shopping items
-  var items = [];
-  var alreadyboughtitem = [];
-
-  service.addItem = function (itemName, quantity) {
-    if ((maxItems === undefined) ||
-        (maxItems !== undefined) && (items.length < maxItems)) {
-      var item = {
-        name: itemName,
-        quantity: quantity
-      };
-      items.push(item);
-
+        alreadyBougthList.items = ShoppingListCheckOffService.getAlreadyBoughtItems();
     }
-    else {
-      throw new Error("ERROR: Max items (" + maxItems + ") reached.");
+
+    function ShoppingListCheckOffService() {
+        var service = this;
+        var toBuyItems = [
+            { name: "cookies", quantity: 10 },
+            { name: "cokes", quantity: 2 },
+            { name: "beers", quantity: 6 },
+            { name: "apples", quantity: 4 },
+            { name: "bananas", quantity: 7 }
+        ];
+        var alreadyBoughtItems = [];
+
+        service.buyItem = function(itemIndex) {
+            var item = toBuyItems[itemIndex];
+
+            alreadyBoughtItems.push(item);
+            toBuyItems.splice(itemIndex, 1);
+        };
+
+        service.getToBuyItems = function() {
+            return toBuyItems;
+        };
+
+        service.getAlreadyBoughtItems = function() {
+            return alreadyBoughtItems;
+        };
     }
-  };
-  service.removeItem = function (itemIndex) {
-      alreadyboughtitem.push(items[itemIndex]);
-      items.splice(itemIndex, 1);
-  };
-
-  service.getItems = function () {
-    return items;
-  };
-  service.getboughtItems = function () {
-    return alreadyboughtitem;
-  };
-}
-
-
-function ShoppingListServiceProvider() {
-  var provider = this;
-
-  provider.defaults = {
-    maxItems: 10
-  };
-
-  provider.$get = function () {
-    var shoppingList = new ShoppingListService(provider.defaults.maxItems);
-
-    return shoppingList;
-  };
-}
-
 })();
